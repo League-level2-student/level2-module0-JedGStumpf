@@ -1,13 +1,14 @@
 package arrays;
 import processing.core.PApplet;
 import processing.core.PImage;
-
+	
 /*
  * Goal: Create a program to paint some Van Gogh paintings!
  * 
  * In this class:
  * 1. Declare a PImage array variable as a member variable in this class.
  *    DO NOT initialize it.
+ *    
  * 
  * 2. In the initializePaintings() method, initialize the PImage array to
  *    contain 4 images.
@@ -50,6 +51,8 @@ public class _03_VanGogh extends PApplet {
     PImage canvas;
     PImage paintbrushCursor;
     boolean initializeCanvas = true;
+    PImage[] paintings;
+    int imageIndex;
     
     /*
      * Write your code below
@@ -57,11 +60,23 @@ public class _03_VanGogh extends PApplet {
     Brush brush;
     
     void initializePaintings() {
+        paintings = new PImage[4];
+        paintings[0] = loadImage("starryNight.jpg");
+        paintings[1] = loadImage("strawHatPortrait.jpg");
+        paintings[2] = loadImage("wheatField.jpg");
+        paintings[3] = loadImage("painterOnRoad.jpg");
+        imageIndex = 0;
+        brush.setNewPainting(paintings[imageIndex]);
         
     }
     
     void selectNextPainting() {
-        
+    	if (imageIndex >= paintings.length-1) {
+    		imageIndex = 0;
+    	} else {
+    		imageIndex++;
+    	}
+    	brush.setNewPainting(paintings[imageIndex]);
     }
 
     @Override
